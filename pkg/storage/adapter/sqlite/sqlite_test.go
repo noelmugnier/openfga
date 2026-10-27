@@ -69,13 +69,13 @@ func TestSQLiteMapsEveryLogicalColumn(t *testing.T) {
 	a := query.NewTuple("a")
 	stmt := query.Select(
 		a.ObjectType(), a.ObjectID(), a.ObjectRelation(),
-		a.SubjectType(), a.SubjectID(), a.SubjectRelation(), a.SubjectKind(),
+		a.SubjectType(), a.SubjectID(), a.SubjectRelation(),
 		a.Store(), a.Condition(), a.ConditionContext(),
 	).From(a)
 	sqlText, _, err := sqlite.Render(stmt)
 	require.NoError(t, err)
 	want := `SELECT "a".object_type, "a".object_id, "a".relation, ` +
-		`"a".user_object_type, "a".user_object_id, "a".user_relation, "a".user_type, ` +
+		`"a".user_object_type, "a".user_object_id, "a".user_relation, ` +
 		`"a".store, COALESCE("a".condition_name, ''), "a".condition_context FROM tuple "a"`
 	assertSQL(t, sqlText, want)
 }

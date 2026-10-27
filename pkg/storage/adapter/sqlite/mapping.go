@@ -19,8 +19,6 @@ func sqliteColumn(name ast.Column, alias string) string {
 		return alias + ".user_object_id"
 	case ast.ColSubjectRelation:
 		return alias + ".user_relation"
-	case ast.ColSubjectKind:
-		return alias + ".user_type"
 	case ast.ColObjectType:
 		return alias + ".object_type"
 	case ast.ColObjectID:
